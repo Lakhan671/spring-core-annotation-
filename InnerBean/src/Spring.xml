@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   <bean id="student" class="Student">
+   <property name="name" value="lakhan singh"/>
+   <property name="rollno" value="10001"/>
+   <property name="barnc" value="MCA"/>
+   </bean>
+   
+   
+  <!--  <without> inharitance></without> -->
+   <bean id="college" class="College">
+   <property name="collegeName" value="KIET"/>
+   <property name="student" ref="student"/>
+   </bean>
+   
+   
+  <!--  <with innerbean by property></with> -->
+  <bean id="college1" class="College">
+				<property name="collegeName" value="BBDIT"/>
+				<property name="student">
+					 <bean  class="Student">
+						<property name="name" value="kumar singh"/>
+						<property name="rollno" value="20001"/>
+						<property name="barnc" value="B.Sc"/>
+                      </bean>
+                 </property>
+  </bean>
+  
+ 
+<!--  <inner bean by constructor></inner> -->
+<bean id="college2" class="College">
+<constructor-arg name="collegeName" value="ITS" type="String"/>
+<constructor-arg>
+       <bean class="Student">
+                        <property name="name" value="nirmal singh"/>
+						<property name="rollno" value="20071"/>
+						<property name="barnc" value="M.Sc"/>
+       
+       </bean>
+       
+</constructor-arg>
+
+</bean>
+<alias name="college2" alias="college3"/>
+
+   
+   </beans>
